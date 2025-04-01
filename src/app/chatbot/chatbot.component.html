@@ -1,0 +1,35 @@
+<div class="chatbot-popup" *ngIf="showChatbot">
+    <div class="chat-header">
+        <img src="spiderbot.svg" alt="Chatbot Icon" class="chat-icon"> Health Bot
+        <button mat-icon-button class="reset-button" (click)="resetChat()" aria-label="Reset Chat">
+            <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-icon-button class="close-button" (click)="toggleChatbot()" aria-label="Close Chatbot">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="chat-messages" #chatMessages>
+        <div *ngFor="let chatEntry of chatHistory" class="message"
+             [ngClass]="{'user-message': chatEntry.isUser, 'bot-message': !chatEntry.isUser}" style="white-space: pre-line;">
+            {{ chatEntry.text }}
+        </div>
+    </div>
+    <div class="chat-input">
+        <mat-form-field appearance="outline">
+            <mat-label>Type your question!</mat-label>
+            <textarea matInput [(ngModel)]="userMessage" (keydown)="onKeyDown($event)"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5">
+            </textarea>
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="sendMessage()" aria-label="Send Message">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+</div>
+
+<button mat-fab color="primary" class="chatbot-button" (click)="toggleChatbot()" *ngIf="!showChatbot"
+        aria-label="Open Chatbot">
+    <mat-icon>chat</mat-icon>
+</button>

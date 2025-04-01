@@ -1,0 +1,18 @@
+<div class="chat-container">
+  <h2>AI Chatbot</h2>
+
+  <div class="input-container">
+      <input [(ngModel)]="userMessage" placeholder="Type or speak..." />
+      <button (click)="sendMessage()">Send</button>
+  </div>
+
+  <div class="response-container">
+      <h3>Response:</h3>
+      <div class="chat-response">{{ responseText }}</div>
+      <div class="chat-response">
+        <pre>{{ responseText }}</pre>
+      </div>
+      
+
+  </div>
+</div>

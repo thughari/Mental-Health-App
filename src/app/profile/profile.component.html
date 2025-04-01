@@ -1,0 +1,74 @@
+<mat-card class="profile-card">
+    <mat-card-header>
+        <mat-card-title>User Profile</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div *ngIf="isLoading" class="spinner-container">
+            <mat-spinner diameter="50"></mat-spinner>
+        </div>
+
+        <div *ngIf="!isLoading && userProfile">
+            <div *ngIf="!isEditing; else editForm">
+                <p><strong>ID:</strong> {{userProfile.id}}</p>
+                <p><strong>Username:</strong> {{userProfile.username}}</p>
+                <p><strong>Email:</strong> {{userProfile.email}}</p>
+                <p><strong>First Name:</strong> {{userProfile.firstName}}</p>
+                <p><strong>Last Name:</strong> {{userProfile.lastName}}</p>
+                <button mat-raised-button color="primary" (click)="enableEditMode()">Edit Profile</button>
+            </div>
+
+            <ng-template #editForm>
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="First Name" formControlName="firstName">
+                        <mat-error *ngIf="profileForm.get('firstName')?.hasError('required')">First name is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last Name" formControlName="lastName">
+                        <mat-error *ngIf="profileForm.get('lastName')?.hasError('required')">Last name is required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="profileForm.get('email')?.hasError('required')">Email is required</mat-error>
+                        <mat-error *ngIf="profileForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" placeholder="Username" formControlName="username">
+                        <mat-error *ngIf="profileForm.get('username')?.hasError('required')">Username is required</mat-error>
+                    </mat-form-field>
+
+                    <div class="button-container">
+                        <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">
+                            Update Profile
+                        </button>
+                    </div>
+                </form>
+            </ng-template>
+        </div>
+
+        <div *ngIf="!isLoading && !userProfile">
+            <p>Could not load user profile.</p>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="profile-card">
+    <mat-card-title>Suggested Routine</mat-card-title>
+    <br>
+    <mat-card-content class="preserve-line-breaks routine-container">
+        <p *ngIf="routineLoading">{{ loadingText }}</p>
+        <markdown [data]="suggestedRoutine"></markdown>
+        <mat-spinner diameter="30" *ngIf="routineLoading"></mat-spinner>
+        <button mat-raised-button color="primary" (click)="generateSuggestedRoutine()">
+            Get Routine
+        </button>
+    </mat-card-content>
+</mat-card>

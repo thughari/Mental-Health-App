@@ -1,0 +1,100 @@
+/* Modern Elegant Profile Card */
+.profile-card {
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 25px;
+  text-align: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography for a refined look */
+.profile-card p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 12px;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+/* Form Field Enhancements */
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #bbb;
+  border-radius: 8px;
+}
+
+.mat-form-field-label {
+  color: #444;
+  font-weight: 500;
+}
+
+/* Stylish Button Design */
+button[mat-raised-button] {
+  margin-top: 20px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #007bff;
+  color: white;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+  display: block;
+  width: 100%;
+}
+
+button[mat-raised-button]:hover {
+  background: #0056b3;
+  box-shadow: 0 5px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Centered Spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+/* Suggested Routine Section */
+.preserve-line-breaks {
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 500;
+  word-break: break-word;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Ensuring Get Routine Button Stays Below */
+.routine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .profile-card {
+      max-width: 92%;
+      padding: 20px;
+  }
+
+  button[mat-raised-button] {
+      font-size: 0.9rem;
+      padding: 10px 15px;
+  }
+}

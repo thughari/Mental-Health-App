@@ -1,0 +1,44 @@
+.auth-container {
+    height: 100vh; /* Fill the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; /* Optional background color */
+  }
+  
+  .mat-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 500px; /* Or adjust as needed */
+  }
+  
+  .mat-card-title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .mat-form-field {
+    width: 100%; /* Ensure fields fill the card width */
+  }
+  
+  .button-container {
+    margin-top: 16px; /* Add spacing above the button */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .registration-fields {
+    display: flex;
+    gap: 16px;
+  }
+  
+  /* Responsive adjustments (optional) */
+  @media (max-width: 600px) {
+    .mat-card {
+      width: 90%; /* Make the card wider on smaller screens */
+    }
+  
+    .registration-fields {
+      flex-direction: column; /* Stack the fields on small screens */
+    }
+  }

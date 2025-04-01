@@ -1,0 +1,160 @@
+<div class="dashboard-container">
+  <mat-toolbar color="primary">
+      <span>Health Dashboard</span>
+      <span class="spacer"></span>
+      <button mat-button color="basic" *ngIf="healthData && !showHealthForm" (click)="enableHealthEditMode()"
+              aria-label="Edit Health Data">
+        <mat-icon>edit</mat-icon> Health Data
+      </button>
+      <button mat-button [matMenuTriggerFor]="userMenu" aria-label="User Settings">
+        <mat-icon>person</mat-icon> {{username}}
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="/profile" *ngIf="healthData">
+          <mat-icon>person</mat-icon>View Profile
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>Logout
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="health-data-grid">
+
+        <!-- Main metrics of dashboard -->
+        <ng-container *ngIf="healthData && !showHealthForm">
+            <mat-card class="health-card">
+                <mat-card-header>
+                    <mat-card-title>Steps Taken</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="data-value">{{healthData.steps}}</div>
+                    <mat-progress-bar mode="determinate" [value]="healthData.steps / 10000 * 100"></mat-progress-bar>
+                    <p class="data-description">
+                        <mat-icon>directions_walk</mat-icon> Steps taken today
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="health-card">
+                <mat-card-header>
+                    <mat-card-title>Calories Burned</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="data-value">{{healthData.caloriesBurned}}</div>
+                    <mat-progress-bar mode="determinate" [value]="healthData.caloriesBurned / 2500 * 100"></mat-progress-bar>
+                    <p class="data-description">
+                        <mat-icon>local_fire_department</mat-icon> Calories burned today
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="health-card">
+                <mat-card-header>
+                    <mat-card-title>Sleep Hours</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="data-value">{{healthData.sleepHours}}</div>
+                    <mat-progress-bar mode="determinate" [value]="healthData.sleepHours / 10 * 100"></mat-progress-bar>
+                    <p class="data-description">
+                        <mat-icon>nightlight_round</mat-icon> Hours of sleep last night
+                    </p>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="health-card">
+                <mat-card-header>
+                    <mat-card-title>Heart Rate</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="data-value">{{healthData.heartRate}}</div>
+                    <mat-progress-bar mode="determinate" [value]="healthData.heartRate"></mat-progress-bar>
+                    <p class="data-description">
+                        <mat-icon>favorite</mat-icon> Resting heart rate
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        
+            <mat-card class="health-card">
+                <mat-card-header>
+                    <mat-card-title>Blood Pressure</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="data-value">{{healthData.systolicBloodPressure}}/{{healthData.diastolicBloodPressure}}</div>
+                    <p class="data-description">
+                        <mat-icon>opacity</mat-icon> Resting heart rate
+                    </p>
+                </mat-card-content>
+            </mat-card>
+      
+              <!-- Custom Metric Card -->
+            <mat-card class="health-card" *ngFor="let customField of healthData.customFields; let i = index">
+            <mat-card-header>
+                <mat-card-title>{{ customField.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="data-value">{{ customField.value }}</div>
+                <p class="data-description">Custom metric</p>
+            </mat-card-content>
+         </mat-card>
+       </ng-container>
+       <mat-card *ngIf="showHealthForm" class="health-form-card">
+                <mat-card-header>
+                    <mat-card-title>{{isEditing ? 'Edit Your Health Data' : 'Enter Your Health Data'}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="healthForm" (ngSubmit)="onHealthFormSubmit()" class="health-form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Steps Taken</mat-label>
+                            <input matInput type="number" formControlName="steps">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Calories Burned</mat-label>
+                            <input matInput type="number" formControlName="caloriesBurned">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sleep Hours</mat-label>
+                            <input matInput type="number" formControlName="sleepHours">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Heart Rate</mat-label>
+                            <input matInput type="number" formControlName="heartRate">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Systolic Blood Pressure</mat-label>
+                            <input matInput type="number" formControlName="systolicBloodPressure">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Diastolic Blood Pressure</mat-label>
+                            <input matInput type="number" formControlName="diastolicBloodPressure">
+                        </mat-form-field>
+
+            <!-- Dynamic Fields display -->
+                <div formArrayName="customFields" *ngFor="let customField of customFieldsFormArray.controls; let i = index" style="margin-bottom: 10px;">
+                <div [formGroupName]="i" class="custom-field">
+                   <mat-form-field appearance="outline" style="width: 45%;">
+                      <mat-label>Field Name</mat-label>
+                      <input matInput placeholder="Field Name" formControlName="name">
+                   </mat-form-field>
+                   <mat-form-field appearance="outline"  style="width: 45%;">
+                    <mat-label>Field Value</mat-label>
+                    <input matInput placeholder="Field Value" formControlName="value">
+                    </mat-form-field>
+                    <button mat-icon-button color="warn" (click)="deleteCustomField(i)">
+                       <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                 </div>
+            <!-- Add Custom Field Button -->
+            <button mat-button type="button" (click)="addCustomField()">Add Custom Field</button>
+
+            <div class="button-group">
+                <button mat-raised-button color="primary" type="submit">{{isEditing ? 'Update' : 'Submit'}}</button>
+                <button mat-button (click)="handleCancelClick()">Cancel</button>
+            </div>
+        </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+  <app-chatbot></app-chatbot>
+</div>

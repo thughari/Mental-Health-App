@@ -1,0 +1,185 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background: linear-gradient(to right, #3f51b5, #673ab7);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the user menu */
+mat-toolbar button[mat-button] {
+  color: white; /* Light text color */
+  background: none;
+  border: none;
+  box-shadow: none;
+  min-width: 48px; /* Adjust to match icon button size */
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center icon */
+}
+
+mat-toolbar button[mat-button]:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Lighten on hover */
+}
+
+mat-toolbar button[mat-button] .mat-icon {
+  margin-right: 5px;
+}
+
+.health-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 25px;
+  padding: 30px;
+}
+
+.health-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.health-card:hover {
+  transform: scale(1.05);
+}
+
+.health-card mat-card-header {
+  background-color: #e8eaf6;
+  padding: 20px;
+  border-bottom: 1px solid #d1c4e9;
+}
+
+.health-card mat-card-title {
+  font-size: 1.3em;
+  font-weight: 500;
+  color: #512da8;
+}
+
+.health-card mat-card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.data-value {
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #303f9f;
+}
+
+.data-description {
+  font-size: 1.1em;
+  color: #616161;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+mat-progress-bar {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: #3f51b5;
+}
+
+/* Style the health data form card */
+.health-form-card {
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style the health data form */
+.health-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.health-form mat-form-field {
+    margin-bottom: 15px;
+}
+
+/* Button styles */
+mat-toolbar .mat-button {
+  color: white; /* Consistent button color */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+  mat-toolbar .mat-mdc-button-base {
+    color: white; /* Light text color */
+  }
+
+  mat-toolbar .mat-mdc-button-base {
+    color: white; /* Light text color */
+    background: none;
+    border: none;
+    box-shadow: none;
+    min-width: 48px; /* Adjust to match icon button size */
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center icon */
+  }
+  
+  mat-toolbar .mat-mdc-button-base:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Lighten on hover */
+  }
+  
+  mat-toolbar .mat-mdc-button-base .mat-icon {
+    margin-right: 5px;
+  }
+  
+  /* Mobile Styles (Media Query) */
+  @media (max-width: 768px) {
+    .health-data-grid {
+      grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+      padding: 15px; /* Reduce padding on mobile */
+      grid-gap: 15px; /* Reduce gap on mobile */
+    }
+  
+    .health-card {
+      border-radius: 10px; /* Slightly less rounded corners */
+    }
+  
+    .health-card mat-card-title {
+      font-size: 1.1em; /* Smaller title on mobile */
+    }
+  
+    .health-card mat-card-content {
+      padding: 15px; /* Reduce padding inside cards */
+    }
+  
+    .data-value {
+      font-size: 2em; /* Slightly smaller data values */
+      margin-bottom: 10px; /* Reduced margin */
+    }
+  
+    .data-description {
+      font-size: 1em; /* Smaller description font */
+    }
+  }
