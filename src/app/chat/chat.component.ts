@@ -16,7 +16,7 @@ export class ChatComponent {
     this.responseText = ''; // Clear previous response
 
     try {
-      const response = await fetch('http://localhost:8080/api/chat/stream', {
+      const response = await fetch('http://34.170.236.64:8081/api/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

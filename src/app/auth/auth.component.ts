@@ -129,7 +129,7 @@ export class AuthComponent implements OnInit {
 
           let authData: AuthData;
 
-          let apiUrl = 'http://localhost:8081/api/auth/login';
+          let apiUrl = 'http://34.170.236.64:8081/api/auth/login';
 
           if (this.isLoginMode) {
               // Login: use username and password
@@ -139,7 +139,7 @@ export class AuthComponent implements OnInit {
               };
           } else {
               // Registration: use all registration fields
-              apiUrl = 'http://localhost:8081/api/auth/register';
+              apiUrl = 'http://34.170.236.64:8081/api/auth/register';
               authData = {
                   username: this.authForm.value.username,
                   email: this.authForm.value.email,

@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class LogoutService {
 
-  private apiUrl = 'http://localhost:8081/api/auth/logout';
+  private apiUrl = 'http://34.170.236.64:8081/api/auth/logout';
 
   constructor(private router: Router, private http: HttpClient) { }
 

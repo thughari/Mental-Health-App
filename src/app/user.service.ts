@@ -23,7 +23,7 @@ interface UserUpdateDTO {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8081/api/user'; // Define root URL
+  private apiUrl = 'http://34.170.236.64:8081/api/user'; // Define root URL
 
   constructor(private http: HttpClient) { }
 

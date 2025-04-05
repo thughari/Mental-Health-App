@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password
       };
 
-      this.http.post<LoginResponse>('http://localhost:8081/api/auth/login', authData)
+      this.http.post<LoginResponse>('http://34.170.236.64:8081/api/auth/login', authData)
         .subscribe(
           (response: LoginResponse) => {
             this.isLoading = false;

@@ -144,7 +144,7 @@ dotCount = 0;
         this.suggestedRoutine = ''; // Clear any existing routine
 
         const token = localStorage.getItem('jwtToken');
-        fetch('http://localhost:8081/api/chat/routine', {
+        fetch('http://34.170.236.64:8081/api/chat/routine', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
