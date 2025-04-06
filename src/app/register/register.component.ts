@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
                 confirmPassword: this.registerForm.value.confirmPassword
             };
 
-            this.http.post('http://34.170.236.64:8081/api/auth/register', authData)
+            this.http.post('https://35.225.18.182/api/auth/register', authData)
                 .subscribe(
                     (response) => {
                         this.isLoading = false;

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HealthService {
 
-  private apiUrl = 'http://34.170.236.64:8081/api/health'; // Replace with your backend API URL
+  private apiUrl = 'https://35.225.18.182/api/health'; // Replace with your backend API URL
 
   constructor(private http: HttpClient) { }
 

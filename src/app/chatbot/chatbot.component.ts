@@ -81,7 +81,7 @@ export class ChatbotComponent implements OnInit, OnDestroy {
       let accumulatedResponse = '';
       try {
           const token = localStorage.getItem('jwtToken');
-          const response = await fetch('http://34.170.236.64:8081/api/chat/stream', {
+          const response = await fetch('https://35.225.18.182/api/chat/stream', {
               method: 'POST',
               headers: {
                   'Authorization': `Bearer ${token}`,
